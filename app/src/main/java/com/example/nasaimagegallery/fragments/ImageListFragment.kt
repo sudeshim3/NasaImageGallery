@@ -1,11 +1,13 @@
 package com.example.nasaimagegallery.fragments
 
 import android.os.Bundle
+import android.transition.TransitionSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.nasaimagegallery.ImagePagerFragment
 import com.example.nasaimagegallery.R
 import com.example.nasaimagegallery.databinding.FragmentImagelistBinding
 import com.example.nasaimagegallery.databinding.PlanetGridItemBinding
@@ -95,6 +97,24 @@ class ImageListFragment(private val injector: Injector) : Fragment() {
         }
     }
 
-    fun openPageFragment(planetGridItemBinding: PlanetGridItemBinding) {
+    fun openPageFragment(binding: PlanetGridItemBinding) {
+        // Exclude the clicked card from the exit transition (e.g. the card will disappear immediately
+        // instead of fading out with the rest to prevent an overlapping animation of fade and move).
+        (exitTransition as TransitionSet).excludeTarget(binding.root, true)
+        parentFragmentManager
+            .beginTransaction()
+            .setReorderingAllowed(true) // Optimize for shared element transition
+            .addSharedElement(
+                binding.planetThumbnailImageView,
+                binding.planetThumbnailImageView.transitionName
+            )
+            .replace(
+                R.id.fragmnet_container,
+                ImagePagerFragment.newInstance(viewModel.planetList, viewModel),
+                ImagePagerFragment::class.java
+                    .simpleName
+            )
+            .addToBackStack(null)
+            .commit()
     }
 }

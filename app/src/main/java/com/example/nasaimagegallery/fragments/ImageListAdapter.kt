@@ -66,6 +66,10 @@ class ImageListAdapter(val imageListFragment: ImageListFragment, val viewModel: 
                         target: Target<Drawable>,
                         isFirstResource: Boolean
                     ): Boolean {
+                        viewHolderListener.onLoadCompleted(
+                            planetGridItemBinding.planetThumbnailImageView,
+                            adapterPosition
+                        )
                         return false
                     }
 
@@ -76,6 +80,10 @@ class ImageListAdapter(val imageListFragment: ImageListFragment, val viewModel: 
                         dataSource: DataSource,
                         isFirstResource: Boolean
                     ): Boolean {
+                        viewHolderListener.onLoadCompleted(
+                            planetGridItemBinding.planetThumbnailImageView,
+                            adapterPosition
+                        )
                         return false
                     }
                 })

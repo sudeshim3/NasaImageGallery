@@ -1,6 +1,6 @@
 package com.example.nasaimagegallery.di
 
-import com.example.nasaimagegallery.ImageListFragment
+import com.example.nasaimagegallery.fragments.ImageListFragment
 
 class Injector(private val dependency: Dependency) {
 

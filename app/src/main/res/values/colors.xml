@@ -11,6 +11,8 @@
     <color name="black_100">#1A000000</color>
     <color name="black_800">#33000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_300">#33FFFFFF</color>
+
 
     <!--    mateial text colors-->
     <color name="fontDark">#2F363F</color>

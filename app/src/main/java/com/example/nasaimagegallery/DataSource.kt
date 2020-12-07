@@ -1,7 +1,7 @@
 package com.example.nasaimagegallery
 
-import com.example.nasaimagegallery.datamodel.PlanetDataModel
+import com.example.nasaimagegallery.datamodel.PlanetData
 
 interface DataSource {
-    fun loadLocalResource(): List<PlanetDataModel>
+    fun loadLocalResource(): PlanetData
 }

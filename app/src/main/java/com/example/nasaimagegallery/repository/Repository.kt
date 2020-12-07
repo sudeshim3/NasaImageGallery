@@ -1,7 +1,7 @@
 package com.example.nasaimagegallery.repository
 
-import com.example.nasaimagegallery.datamodel.PlanetDataModel
+import com.example.nasaimagegallery.datamodel.PlanetData
 
 interface Repository {
-    fun loadData(): List<PlanetDataModel>
+    fun loadData(): PlanetData
 }

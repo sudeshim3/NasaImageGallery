@@ -21,6 +21,7 @@ class ImageListFragment(private val injector: Injector) : Fragment() {
     private var _binding: FragmentImagelistBinding? = null
     private val binding get() = _binding!!
     lateinit var imageListAdapter: ImageListAdapter
+    lateinit var viewModel: PlanetViewModel
     var viewModelFactory: SharedVMFactory? = null
         set(value) {
             if (value != null) {
@@ -29,7 +30,6 @@ class ImageListFragment(private val injector: Injector) : Fragment() {
             }
         }
     var data: List<PlanetDataModel> = listOf()
-    lateinit var viewModel: PlanetViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,

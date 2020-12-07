@@ -10,6 +10,8 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.example.nasaimagegallery.ViewHolderListener
+import com.example.nasaimagegallery.ViewHolderListenerImpl
 import com.example.nasaimagegallery.databinding.PlanetGridItemBinding
 import com.example.nasaimagegallery.datamodel.PlanetDataModel
 import com.example.nasaimagegallery.viewmodel.PlanetViewModel
@@ -19,6 +21,7 @@ class ImageListAdapter(val imageListFragment: ImageListFragment, val viewModel: 
 
     var planetsList = listOf<PlanetDataModel>()
     val requestManager = Glide.with(imageListFragment)
+    private val viewHolderListener: ViewHolderListener = ViewHolderListenerImpl(imageListFragment, viewModel)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageThumbnailViewHolder {
         val binding =
@@ -80,6 +83,7 @@ class ImageListAdapter(val imageListFragment: ImageListFragment, val viewModel: 
         }
 
         override fun onClick(view: View) {
+            viewHolderListener.onItemClicked(view, adapterPosition)
         }
     }
 }

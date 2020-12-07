@@ -1,10 +1,12 @@
 package com.example.nasaimagegallery.fragments
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.transition.TransitionSet
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.SharedElementCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.nasaimagegallery.ImagePagerFragment
@@ -47,6 +49,8 @@ class ImageListFragment(private val injector: Injector) : Fragment() {
         injector.inject(this)
         setupViewModel() // Remove the dependency from here
         binding.recyclerView.adapter = imageListAdapter
+        prepareTransition()
+        postponeEnterTransition()
         observeLiveData()
     }
 
@@ -116,5 +120,25 @@ class ImageListFragment(private val injector: Injector) : Fragment() {
             )
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun prepareTransition() {
+        exitTransition =
+            TransitionInflater.from(context).inflateTransition(R.transition.grid_exit_transition)
+
+        setExitSharedElementCallback(object : SharedElementCallback() {
+            override fun onMapSharedElements(
+                names: MutableList<String>,
+                sharedElements: MutableMap<String, View>
+            ) {
+                val planetViewHolder =
+                    binding.recyclerView.findViewHolderForAdapterPosition(viewModel.viewpagerCurrentPosition)
+                        ?: return
+                sharedElements.put(
+                    names[0],
+                    planetViewHolder.itemView.findViewById(R.id.planet_thumbnail_imageView)
+                )
+            }
+        })
     }
 }

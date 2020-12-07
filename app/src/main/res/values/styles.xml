@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Caption" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/fontLight</item>
+        <item name="android:lineSpacingExtra">5dp</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
+    <style name="H2" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/fontDark</item>
+        <item name="android:letterSpacing">-0.015</item>
+        <item name="android:lineSpacingExtra">7dp</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
+    <style name="BodySmall2" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/fontDark</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+
+    <style name="BodySmall" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/fontNormal</item>
+        <item name="android:lineSpacingExtra">6dp</item>
+        <item name="android:lineSpacingMultiplier">1.0</item>
+    </style>
+</resources>

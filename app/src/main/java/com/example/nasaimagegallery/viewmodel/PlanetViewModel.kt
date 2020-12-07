@@ -9,8 +9,9 @@ import com.example.nasaimagegallery.repository.Repository
 open class PlanetViewModel(
     private val repositoryImpl: Repository
 ) : ViewModel() {
+    var viewpagerCurrentPosition = 0
     var planetList: List<PlanetDataModel> = listOf()
-    private val liveData = MutableLiveData<PlanetData>()
+    val liveData = MutableLiveData<PlanetData>()
 
     init {
         loadData()

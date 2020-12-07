@@ -1,5 +1,6 @@
 package com.example.nasaimagegallery.di
 
+import com.example.nasaimagegallery.fragments.ImageListAdapter
 import com.example.nasaimagegallery.fragments.ImageListFragment
 
 class Injector(private val dependency: Dependency) {
@@ -12,5 +13,6 @@ class Injector(private val dependency: Dependency) {
 
     private fun injectDependencies(client: ImageListFragment) {
         client.viewModelFactory = dependency.getSharedVMFactory()
+        client.imageListAdapter = ImageListAdapter(client, client.viewModel)
     }
 }

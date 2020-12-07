@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Nasa Image Gallery</string>
+    <string name="no_image_found">No image found</string>
+    <string name="some_error_occured">Some error occurred</string>
 </resources>

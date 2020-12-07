@@ -47,7 +47,7 @@ class ImageListFragment(private val injector: Injector) : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         injector.inject(this)
-        setupViewModel() // Remove the dependency from here
+        setupViewModel()
         binding.recyclerView.adapter = imageListAdapter
         prepareTransition()
         postponeEnterTransition()

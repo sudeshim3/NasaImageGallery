@@ -20,7 +20,7 @@
                 motion:motionTarget="@+id/text_details_layout">
                 <CustomAttribute
                     motion:attributeName="backgroundColor"
-                    motion:customColorValue="@color/black_800" />
+                    motion:customColorValue="@color/black_900" />
             </KeyAttribute>
         </KeyFrameSet>
         <OnClick motion:targetId="@id/expand_details_button" />
@@ -81,7 +81,7 @@
                 motion:layout_constraintTop_toBottomOf="@id/text_detail_guidline" />
             <CustomAttribute
                 motion:attributeName="backgroundColor"
-                motion:customColorValue="@color/black_800" />
+                motion:customColorValue="@color/black_900" />
         </Constraint>
         <Constraint android:id="@+id/expand_details_button">
             <Transform android:rotation="180" />

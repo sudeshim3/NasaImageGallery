@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -17,6 +18,9 @@ import com.example.nasaimagegallery.datamodel.PlanetDataModel
 class ImageFragment : Fragment() {
     private var _binding: FragmentImageDetailBinding? = null
     private val binding get() = _binding!!
+    var scrollState = true
+    val MIN_LINES = 2
+    val MAX_LINES = 50
 
     companion object {
         private const val PLANET_DATA = "planetData"
@@ -42,8 +46,52 @@ class ImageFragment : Fragment() {
         val planetData: PlanetDataModel = requireArguments().getParcelable(PLANET_DATA)!!
         setPlanetData(planetData)
 
+        loadImage(planetData.imageUrl)
+        addTransitionListener()
+        binding.scrollRegion.setOnTouchListener { view, motionEvent ->
+            scrollState
+        }
+        return binding.root
+    }
+
+    private fun enableScroll(shouldScroll: Boolean) {
+        scrollState = shouldScroll
+    }
+
+    private fun addTransitionListener() {
+        binding.root.addTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+            }
+
+            override fun onTransitionChange(
+                motionLayout: MotionLayout?,
+                startId: Int,
+                endId: Int,
+                progress: Float
+            ) {
+            }
+
+            override fun onTransitionCompleted(motionLayout: MotionLayout, state: Int) {
+                when (motionLayout.currentState) {
+                    motionLayout.startState -> {
+                        enableScroll(true)
+                        binding.imageDescriptionTextView.maxLines = MIN_LINES
+                    }
+                    motionLayout.endState -> {
+                        enableScroll(false)
+                        binding.imageDescriptionTextView.maxLines = MAX_LINES
+                    }
+                }
+            }
+
+            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {
+            }
+        })
+    }
+
+    private fun loadImage(imageUrl: String) {
         Glide.with(this)
-            .load(planetData.imageUrl)
+            .load(imageUrl)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -67,7 +115,6 @@ class ImageFragment : Fragment() {
                 }
             })
             .into(binding.detailImageview)
-        return binding.root
     }
 
     private fun setPlanetData(planetData: PlanetDataModel) {

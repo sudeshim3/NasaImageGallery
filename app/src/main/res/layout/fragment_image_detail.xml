@@ -34,6 +34,7 @@
 
         <TextView
             style="@style/BodySmall2"
+            android:layout_marginTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name_label" />
@@ -50,8 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/copyright_label"
-            android:textSize="14sp" />
+            android:text="@string/copyright_label" />
 
         <TextView
             android:id="@+id/copyright_textView"
@@ -65,8 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="@string/date_label"
-            android:textSize="14sp" />
+            android:text="@string/date_label" />
 
         <TextView
             android:id="@+id/date_textView"

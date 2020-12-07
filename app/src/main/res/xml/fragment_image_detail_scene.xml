@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="800">
+        <KeyFrameSet></KeyFrameSet>
+        <OnClick motion:targetId="@id/expand_details_button" />
+        <OnSwipe
+            motion:dragDirection="dragUp"
+            motion:onTouchUp="autoComplete" />
+    </Transition>
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint android:id="@+id/image_name_textView">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+        <Constraint android:id="@+id/details_layout">
+            <PropertySet android:alpha="0" />
+        </Constraint>
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/text_detail_guidline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            motion:layout_constraintGuide_percent="0.35" />
+        <Constraint android:id="@+id/details_layout">
+            <PropertySet android:alpha="1" />
+        </Constraint>
+    </ConstraintSet>
+</MotionScene>

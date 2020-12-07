@@ -12,17 +12,18 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.nasaimagegallery.databinding.FragmentImageDetailBinding
+import com.example.nasaimagegallery.datamodel.PlanetDataModel
 
 class ImageFragment : Fragment() {
     private var _binding: FragmentImageDetailBinding? = null
     private val binding get() = _binding!!
 
     companion object {
-        private const val KEY_IMAGE_RES = "key.imageRes"
-        fun newInstance(drawableRes: String?): ImageFragment {
+        private const val PLANET_DATA = "planetData"
+        fun newInstance(planetData: PlanetDataModel): ImageFragment {
             val fragment = ImageFragment()
             val argument = Bundle()
-            argument.putString(KEY_IMAGE_RES, drawableRes)
+            argument.putParcelable(PLANET_DATA, planetData)
             fragment.arguments = argument
             return fragment
         }
@@ -35,11 +36,14 @@ class ImageFragment : Fragment() {
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         _binding = FragmentImageDetailBinding.inflate(inflater, container, false)
-        val imageRes = requireArguments().getString(KEY_IMAGE_RES)
-        binding.detailImageview.transitionName = imageRes.toString()
+        if (arguments == null || requireArguments().containsKey(PLANET_DATA).not()) {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+        val planetData: PlanetDataModel = requireArguments().getParcelable(PLANET_DATA)!!
+        setPlanetData(planetData)
 
         Glide.with(this)
-            .load(imageRes)
+            .load(planetData.imageUrl)
             .listener(object : RequestListener<Drawable> {
                 override fun onLoadFailed(
                     e: GlideException?,
@@ -64,5 +68,16 @@ class ImageFragment : Fragment() {
             })
             .into(binding.detailImageview)
         return binding.root
+    }
+
+    private fun setPlanetData(planetData: PlanetDataModel) {
+        with(binding) {
+            detailImageview.transitionName = planetData.imageUrl
+            imageDescriptionTextView.text = planetData.imageDetail
+            smallImageNameTextView.text = planetData.title
+            imageNameTextView.text = planetData.title
+            copyrightTextView.text = planetData.copyright
+            dateTextView.text = planetData.date
+        }
     }
 }

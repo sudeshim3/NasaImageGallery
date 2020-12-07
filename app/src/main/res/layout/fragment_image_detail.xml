@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/image_detail_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    app:layoutDescription="@xml/fragment_image_detail_scene">
 
     <ImageView
         android:id="@+id/detail_imageview"
@@ -27,48 +28,51 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical"
-        app:layout_constraintStart_toEndOf="@id/detail_imageview"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/detail_imageview"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             style="@style/BodySmall2"
-            android:text="Name: " />
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/Caption"
-            android:text="Starburst Galaxy M94 from Hubble from telescope" />
+            android:text="@string/name_label" />
 
         <TextView
+            android:id="@+id/small_image_name_textView"
+            style="@style/Caption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Starburst Galaxy M94 from Hubble from telescope" />
+
+        <TextView
+            style="@style/BodySmall2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/BodySmall2"
-            android:text="Copyright: "
+            android:text="@string/copyright_label"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/copyright_textView"
+            style="@style/Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Caption"
-            android:text="Stanislav Volskiy ©" />
+            tools:text="Stanislav Volskiy ©" />
 
         <TextView
+            style="@style/BodySmall2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            style="@style/BodySmall2"
-            android:text="Date: "
+            android:text="@string/date_label"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/date_textView"
+            style="@style/Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/Caption"
-            android:text="2019-12-30" />
+            tools:text="2019-12-30" />
     </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
@@ -85,12 +89,12 @@
         android:layout_height="wrap_content"
         android:letterSpacing="0.02"
         android:padding="16dp"
-        android:text="Starburst Galaxy M94 from Hubble from telescope"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/text_details_layout"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Starburst Galaxy M94 from Hubble from telescope" />
 
     <LinearLayout
         android:id="@+id/text_details_layout"
@@ -122,8 +126,8 @@
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:padding="16dp"
-                android:text="If this is Saturn, where are the rings?  When Saturn's disappeared in 1612, Galileo did not understand why.   Later that century, it became understood that Saturn's unusual protrusions were rings and that when the Earth crosses the ring plane, the edge-on rings will appear to disappear.  This is because Saturn's rings are confined to a plane many times thinner, in proportion, than a razor blade.  In modern times, the robot Cassini spacecraft orbiting Saturn frequently crossed Saturn's ring plane during its mission to Saturn, from 2004 to 2017.  A series of plane crossing images from 2005 February was dug out of the vast online Cassini raw image archive by interested Spanish amateur Fernando Garcia Navarro.  Pictured here, digitally cropped and set in representative colors, is the striking result.  Saturn's thin ring plane appears in blue, bands and clouds in Saturn's upper atmosphere appear in gold. Details of Saturn's rings can be seen in the high dark shadows across the top of this image, taken back in 2005. The moons Dione and Enceladus appear as bumps in the rings.    Free Presentation: APOD Editor to show best astronomy images of 2019 -- and the decade -- in NYC on January 3"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                tools:text="@string/dummy_image_description" />
         </ScrollView>
     </LinearLayout>
 
@@ -139,4 +143,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/text_details_layout" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.motion.widget.MotionLayout>

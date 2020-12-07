@@ -13,5 +13,5 @@ class ImageDetailsAdapter(
 ) {
     override fun getCount() = data.size
 
-    override fun getItem(position: Int) = ImageFragment.newInstance(data[position].imageUrl)
+    override fun getItem(position: Int) = ImageFragment.newInstance(data[position])
 }

@@ -8,6 +8,10 @@ The Following project follow MVVM Architecture pattern.
 
 Because of limited dependency required for various components manual DI was preffered.
 
+### Video Preview:
+
+[![Youtube video link](https://img.youtube.com/vi/Bb-RwrP7Fts/0.jpg)](https://www.youtube.com/watch?v=Bb-RwrP7Fts)
+
 ### Snapshots:
 
 #### Landing Page
